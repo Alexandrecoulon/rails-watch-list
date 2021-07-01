@@ -1,4 +1,15 @@
-<h1><%= @list.name %></h1>
+ 
+	<% 
+	if @list.photo.attached?
+		picture = cl_image_path list.photo.key, height: 300, width: 800, crop: :fill
+	else
+		picture = cl_image_path "action_hx5ypt", height: 300, width: 800, crop: :fill
+	end
+	 %>
+		<div class="card-category" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url(<%= picture %>)">
+  		<%= @list.name %> </div>
+
+
 <% @list.bookmarks.each do |f| %>
 <h2><%= f.movie.title %></h2>
 <%= image_tag(f.movie.poster_url, {:style => "width:200px;"}) %>
